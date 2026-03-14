@@ -27,5 +27,5 @@ func main() {
 
 	fmt.Println(medium.AddTwoNumbers(l1, l2))
 	*/
-	fmt.Println(medium.LengthOfLongestSubstring("anviaj"))
+	fmt.Println(medium.LengthOfLongestSubstring("bpfbhmipx"))
 }

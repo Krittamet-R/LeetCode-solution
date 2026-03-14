@@ -6,8 +6,8 @@ import "fmt"
 func LengthOfLongestSubstring(s string) int {
 	seen := map[byte]int{}
 	re := 0
+	start := 0
 	fmt.Println(s)
-
 	for i := 0; i < len(s); i++ {
 		fmt.Print(s[i])
 		_, dup := seen[s[i]]
@@ -19,9 +19,12 @@ func LengthOfLongestSubstring(s string) int {
 			if len(seen) > re {
 				re = len(seen)
 			}
-			Val, _ := seen[s[i]]
-			i = Val
-			seen = map[byte]int{}
+			val, _ := seen[s[i]]
+			for j := start; j <= val; j++{
+				delete(seen, s[j])
+				start = val + 1	
+			}
+			seen[s[i]] = i
 		}
 		fmt.Printf(" %d\n", len(seen))
 	}
