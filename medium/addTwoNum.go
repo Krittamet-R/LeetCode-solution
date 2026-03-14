@@ -8,7 +8,58 @@ type ListNode struct{
 }
 
 func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	carryover := 0
+	ans := &ListNode{}
+	cur := ans
+	for l1 != nil || l2 != nil {
+		temp := l1.Val + l2.Val + carryover
+		fmt.Printf("temp: %d\n", temp)
+		carryover = temp / 10
+		temp = temp % 10
+		fmt.Printf("carryover: %d, temp: %d\n", carryover, temp)
 
+		cur.Val = temp
+		l1 = l1.Next
+		l2 = l2.Next
+
+		switch{
+		case l1 != nil && l2 != nil:
+			cur.Next = &ListNode{}
+			cur = cur.Next
+		case l1 == nil && l2 != nil:
+			for l2 != nil {
+				cur.Next = &ListNode{}
+				cur = cur.Next
+				t := (l2.Val + carryover) % 10
+				carryover = (l2.Val + carryover) / 10
+				cur.Val = t
+				l2 = l2.Next
+			}
+		case l2 == nil && l1 != nil:
+			for l1 != nil {
+				cur.Next = &ListNode{}
+				cur = cur.Next
+				t := (l1.Val + carryover) % 10
+				carryover = (l1.Val + carryover) / 10
+				cur.Val = t
+				l1 = l1.Next
+			}
+		}
+	}
+	
+	if carryover >= 1 {
+		cur.Next = &ListNode{}
+		cur = cur.Next
+		cur.Val = carryover
+	}
+
+	head := ans
+	for head != nil {
+		fmt.Println(head.Val)
+		head = head.Next
+	}
+
+	return ans
 }
 
 	/* Fail case that larger than even uint64
