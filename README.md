@@ -1,6 +1,6 @@
 # 🚀 LeetCode Solutions in Go
 
-Welcome to my LeetCode journey!
+[Welcome to my LeetCode journey!](https://leetcode.com/u/Krittame-R/)
 These solutions were made by using purely logic
 I do not have ability to optimize it (Yet! Note: 12 Mar 2026)
 
